@@ -2,6 +2,7 @@ package com.ef.parse.Service.Log;
 
 
 import com.ef.parse.model.LogDO;
+import com.ef.parse.model.ResultDO;
 import com.ef.parse.repository.LogRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public List<String> getStatistics(LocalDateTime initialDate, LocalDateTime finalDate, Long threshold) {
+    public List<ResultDO> getStatistics(LocalDateTime initialDate, LocalDateTime finalDate, Long threshold) {
         return logRepository.getResults(initialDate, finalDate, threshold);
     }
 }

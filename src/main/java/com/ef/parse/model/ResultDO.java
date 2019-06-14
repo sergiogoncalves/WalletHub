@@ -13,11 +13,16 @@ import javax.persistence.*;
 @Table(name = "result")
 public class ResultDO {
 
+    public ResultDO(String ip, Long quantity) {
+        this.ip = ip;
+        this.quantity = quantity;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String ip;
 
-    private int threshold;
+    private Long quantity;
 }

@@ -1,6 +1,7 @@
 package com.ef.parse.utils;
 
 import com.ef.parse.Service.Log.LogService;
+import com.ef.parse.model.ResultDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,10 +35,10 @@ public class UtilsTest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime.parse("2017-01-01 15:00:00", formatter);
 
-        List<String> resultado = logService.getStatistics(LocalDateTime.parse("2017-01-01 15:00:00", formatter), LocalDateTime.parse("2017-01-01 16:00:00", formatter), 2L);
+        List<ResultDO> resultado = logService.getStatistics(LocalDateTime.parse("2017-01-01 15:00:00", formatter), LocalDateTime.parse("2017-01-01 16:00:00", formatter), 2L);
 
         resultado.forEach(word -> {
-            System.out.println(word);
+            System.out.println(word.getIp());
         });
     }
 }
