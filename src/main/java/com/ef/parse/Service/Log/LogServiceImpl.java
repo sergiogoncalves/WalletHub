@@ -5,7 +5,7 @@ import com.ef.parse.model.LogDO;
 import com.ef.parse.repository.LogRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,20 +17,7 @@ public class LogServiceImpl implements LogService {
         this.logRepository = logRepository;
     }
 
-    @Override
-    public Collection<LogDO> findAll() {
-        return null;
-    }
 
-    @Override
-    public LogDO findById(Long aLong) {
-        return null;
-    }
-
-    @Override
-    public LogDO save(LogDO object) {
-        return null;
-    }
 
     @Override
     public void saveAll(List<LogDO> object) {
@@ -40,12 +27,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public void delete(LogDO object) {
-
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
-
+    public List<String> getStatistics(LocalDateTime initialDate, LocalDateTime finalDate, Long threshold) {
+        return logRepository.getResults(initialDate, finalDate, threshold);
     }
 }

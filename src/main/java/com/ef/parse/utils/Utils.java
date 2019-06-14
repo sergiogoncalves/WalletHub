@@ -41,9 +41,9 @@ public class Utils {
 
                 logDO.setDate(LocalDateTime.parse(command[0], formatter));
                 logDO.setIp(command[1]);
-                logDO.setCommand(command[2]);
+                logDO.setRequest(command[2]);
                 logDO.setStatus(Integer.parseInt(command[3]));
-                logDO.setBrowser(command[4]);
+                logDO.setUserAgent(command[4]);
 
                 logFile.add(logDO);
 
