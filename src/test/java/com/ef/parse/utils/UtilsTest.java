@@ -1,6 +1,6 @@
 package com.ef.parse.utils;
 
-import com.ef.parse.Service.Log.LogService;
+import com.ef.parse.service.log.LogService;
 import com.ef.parse.model.ResultDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +12,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UtilsTest {
@@ -22,11 +20,15 @@ public class UtilsTest {
     LogService logService;
 
     @Test
-    public void readFile() {
+    public void readFile() throws Exception {
 
         Utils util = new Utils(logService);
 
-        util.readFile("D:\\SergioProjects\\WalletHub\\requirements\\access.log");
+       // util.readFile("D:\\SergioProjects\\WalletHub\\requirements\\access.log");
+
+        util.readFile("C:\\Users\\Sérgio Gonçalves\\Documents\\Projetos Spring Boot\\WalletHub\\requirements\\access.log");
+
+
     }
 
     @Test
