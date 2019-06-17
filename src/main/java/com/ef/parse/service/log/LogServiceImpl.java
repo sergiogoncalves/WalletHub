@@ -4,12 +4,10 @@ package com.ef.parse.service.log;
 import com.ef.parse.model.LogDO;
 import com.ef.parse.model.ResultDO;
 import com.ef.parse.repository.LogRepository;
+import com.ef.parse.utils.Utils;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,53 +15,30 @@ import java.util.List;
 public class LogServiceImpl implements LogService {
 
     LogRepository logRepository;
+    Utils utils;
 
-    public LogServiceImpl(LogRepository logRepository) {
+
+    public LogServiceImpl(LogRepository logRepository, Utils utils) {
         this.logRepository = logRepository;
+        this.utils = utils;
     }
-
-
 
     @Override
     public void saveAll(List<LogDO> object) {
-
          logRepository.saveAll(object);
-
     }
 
     @Override
-    public List<ResultDO> getStatistics(LocalDateTime initialDate, LocalDateTime finalDate, Long threshold) {
+    public List<ResultDO> getStatistics(Date initialDate, Date finalDate, Long threshold) {
         return logRepository.getResults(initialDate, finalDate, threshold);
     }
 
     public void processFile(String pathToFile) throws Exception{
+        saveAll(utils.readFile(pathToFile));
+    }
 
-        try (
-
-                InputStream is = new FileInputStream(pathToFile);
-                InputStreamReader isr = new InputStreamReader(is);
-                BufferedReader br = new BufferedReader(isr)
-        ) {
-
-            String[] command;
-
-            String formatter = "yyyy-MM-dd HH:mm:ss.SSS";
-
-            List<LogDO> logFile = new ArrayList<>();
-            String row = br.readLine();
-
-            while(row != null) {
-
-                logFile.add(LogDO.logDOParse(row.split("\\|")));
-
-                row = br.readLine();
-
-            }
-
-            saveAll(logFile);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void deleteAll() {
+        logRepository.deleteAll();
     }
 }

@@ -1,32 +1,33 @@
 package com.ef.parse;
 
-import com.ef.parse.service.log.LogService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ef.parse.utils.Parameters;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class Parser {
 
+
     public static void main(String[] args) {
 
+        try {
 
+            for (String param : args) {
 
-        for (String param : args) {
+                param = param.replace("--", "");
 
-            param = param.replace("--", "");
+                String[] p = param.split("=");
 
-            String[] p = param.split("=");
+                Parameters.addParameterValue(p[0], p[1]);
+            }
 
+            Parameters.checkParameters();
 
+            SpringApplication.run(Parser.class, args);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-
-        SpringApplication.run(Parser.class, args);
-
-
-
     }
 
 

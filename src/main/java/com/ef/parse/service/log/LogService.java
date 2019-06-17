@@ -6,12 +6,15 @@ import com.ef.parse.model.ResultDO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public interface LogService extends CrudService<LogDO, Long> {
 
-    List<ResultDO> getStatistics(LocalDateTime initialDate, LocalDateTime finalDate, Long threshold);
+    List<ResultDO> getStatistics(Date initialDate, Date finalDate, Long threshold);
 
     void processFile(String path)throws Exception;
+
+    void deleteAll();
 }

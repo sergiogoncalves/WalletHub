@@ -1,6 +1,9 @@
 package com.ef.parse.batch;
 
 import com.ef.parse.model.LogDO;
+import com.ef.parse.service.log.LogService;
+import com.ef.parse.utils.Parameters;
+import com.ef.parse.utils.Utils;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -19,13 +22,14 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.DataBinder;
 
 import javax.persistence.EntityManagerFactory;
+import javax.xml.ws.Service;
 import java.beans.PropertyEditorSupport;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//@EnableBatchProcessing
-//@Configuration
+@EnableBatchProcessing
+@Configuration
 public class BatchService {
 
     @Autowired
@@ -37,16 +41,22 @@ public class BatchService {
     @Autowired
     EntityManagerFactory emf;
 
+    @Autowired
+    LogService logService;
+
+    @Autowired
+    Utils utils;
+
+
     private static final String DELIMITER = "|";
     private static final String FORMATTER = "yyyy-MM-dd HH:mm:ss.SSS";
-
 
     @Bean
     public FlatFileItemReader<LogDO> reader() {
 
         FlatFileItemReader<LogDO> reader = new FlatFileItemReader<>();
 
-        reader.setResource(new ClassPathResource("access.log"));
+        reader.setResource(new ClassPathResource(Parameters.accesslog));
 
         reader.setLineMapper(new DefaultLineMapper<LogDO>() {{
             setLineTokenizer(new DelimitedLineTokenizer(DELIMITER) {{
@@ -83,6 +93,9 @@ public class BatchService {
 
     @Bean
     public Step step1() {
+
+        logService.deleteAll();
+
         return stepBuilderFactory.get("step1")
                 .<LogDO, LogDO>chunk(10000)
                 .reader(reader())
@@ -106,8 +119,12 @@ public class BatchService {
             public void afterJob(JobExecution jobExecution) {
                 if (jobExecution.getStatus() == BatchStatus.COMPLETED) {
 
-                    System.out.println("!!! JOB FINISHED! Time to verify the result");
+                    logService.getStatistics(Parameters.startDate, utils.getFinalDate(Parameters.startDate, Parameters.duration), Parameters.threshold)
+                    .forEach(result -> {
 
+                        System.out.println("IP: " + result.getIp() + " - Quantity Access: " + result.getQuantity());
+
+                    });
                 }
             }
         };
