@@ -1,4 +1,4 @@
-package com.ef.parse.model;
+package com.ef.Parser.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

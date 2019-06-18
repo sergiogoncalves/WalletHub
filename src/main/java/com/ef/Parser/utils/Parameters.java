@@ -1,6 +1,6 @@
-package com.ef.parse.utils;
+package com.ef.Parser.utils;
 
-import com.ef.parse.exception.MissingParameterException;
+import com.ef.Parser.exception.MissingParameterException;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;

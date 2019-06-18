@@ -9,16 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wallethub</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>parser</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>WalletHub</name>
     <description>Project WalletHub</description>
 
     <properties>
         <java.version>1.8</java.version>
-        <io.springfox.springfox-swagger2>2.9.2</io.springfox.springfox-swagger2>
-        <io.springfox.springfox-swagger-ui>2.9.2</io.springfox.springfox-swagger-ui>
-
     </properties>
 
     <dependencies>
@@ -58,29 +55,14 @@
             <artifactId>spring-batch-core</artifactId>
         </dependency>
 
-        <!-- Include swagger for API description -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${io.springfox.springfox-swagger2}</version>
-        </dependency>
-
-        <!-- Include swagger for API description UI -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${io.springfox.springfox-swagger-ui}</version>
-        </dependency>
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
-
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

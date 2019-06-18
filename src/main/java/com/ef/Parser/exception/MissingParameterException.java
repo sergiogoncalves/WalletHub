@@ -1,4 +1,4 @@
-package com.ef.parse.exception;
+package com.ef.Parser.exception;
 
 public class MissingParameterException  extends Exception{
 

@@ -1,13 +1,12 @@
-package com.ef.parse.service.log;
+package com.ef.Parser.service.log;
 
 
-import com.ef.parse.model.LogDO;
-import com.ef.parse.model.ResultDO;
-import com.ef.parse.repository.LogRepository;
-import com.ef.parse.utils.Utils;
+import com.ef.Parser.model.LogDO;
+import com.ef.Parser.model.ResultDO;
+import com.ef.Parser.repository.LogRepository;
+import com.ef.Parser.utils.Utils;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 

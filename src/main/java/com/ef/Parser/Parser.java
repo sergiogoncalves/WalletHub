@@ -1,6 +1,6 @@
-package com.ef.parse;
+package com.ef.Parser;
 
-import com.ef.parse.utils.Parameters;
+import com.ef.Parser.utils.Parameters;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

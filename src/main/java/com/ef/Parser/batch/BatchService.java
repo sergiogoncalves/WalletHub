@@ -1,9 +1,9 @@
-package com.ef.parse.batch;
+package com.ef.Parser.batch;
 
-import com.ef.parse.model.LogDO;
-import com.ef.parse.service.log.LogService;
-import com.ef.parse.utils.Parameters;
-import com.ef.parse.utils.Utils;
+import com.ef.Parser.model.LogDO;
+import com.ef.Parser.service.log.LogService;
+import com.ef.Parser.utils.Parameters;
+import com.ef.Parser.utils.Utils;
 import org.springframework.batch.core.*;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -22,7 +22,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.DataBinder;
 
 import javax.persistence.EntityManagerFactory;
-import javax.xml.ws.Service;
 import java.beans.PropertyEditorSupport;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -122,10 +121,12 @@ public class BatchService {
                     logService.getStatistics(Parameters.startDate, utils.getFinalDate(Parameters.startDate, Parameters.duration), Parameters.threshold)
                     .forEach(result -> {
 
-                        System.out.println("IP: " + result.getIp() + " - Quantity Access: " + result.getQuantity());
+                        System.out.println(result.getIp());
 
                     });
                 }
+
+                System.exit(0);
             }
         };
     }

@@ -1,7 +1,7 @@
-package com.ef.parse.repository;
+package com.ef.Parser.repository;
 
-import com.ef.parse.model.LogDO;
-import com.ef.parse.model.ResultDO;
+import com.ef.Parser.model.LogDO;
+import com.ef.Parser.model.ResultDO;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +15,7 @@ public interface LogRepository extends CrudRepository<LogDO, Long> {
 
 
 
-    @Query("SELECT new com.ef.parse.model.ResultDO(L.ip, count(L)) " +
+    @Query("SELECT new com.ef.Parser.model.ResultDO(L.ip, count(L)) " +
             "  from LogDO L " +
             "  where L.date between :initialDate and :finalDate" +
             "  group by L.ip " +

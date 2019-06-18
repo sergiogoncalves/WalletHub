@@ -1,12 +1,9 @@
-package com.ef.parse.utils;
+package com.ef.Parser.utils;
 
-import com.ef.parse.model.LogDO;
+import com.ef.Parser.model.LogDO;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

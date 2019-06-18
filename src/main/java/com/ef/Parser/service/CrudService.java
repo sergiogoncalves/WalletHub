@@ -1,4 +1,4 @@
-package com.ef.parse.service;
+package com.ef.Parser.service;
 
 import java.util.List;
 
